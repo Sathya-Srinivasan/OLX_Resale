@@ -1,33 +1,50 @@
 package com.hcl.olxresale.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+/**
+ * @author Sathya S
+ *
+ */
+@Entity
+@Table(name = "role")
 public class Role {
-	int customer;
-	int seller;
+	private int roleId;
+	private String name;
+
+	@Override
+	public String toString() {
+		return "Role [roleId=" + roleId + ", name=" + name + "]";
+	}
+
+	/**
+	 * 
+	 */
 	public Role() {
 		super();
+
 	}
-	public Role(int customer, int seller) {
+
+	public Role(int roleId, String name) {
 		super();
-		this.customer = customer;
-		this.seller = seller;
-		
+		this.roleId = roleId;
+		this.name = name;
 	}
-	public int getcustomer() {
-		return customer;
+
+	public int getRoleId() {
+		return roleId;
 	}
-	public void setUserId(int userId) {
-		this.customer = customer;
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
-	public int getseller() {
-		return seller;
+
+	public String getName() {
+		return name;
 	}
-	public void setseller(int seller) {
-		this.seller = seller;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	//public String getAdmin() {
-//		return Admin;
-//	}
-//	public void setAdmin(String admin) {
-//		Admin = admin;
-//	}
 }

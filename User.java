@@ -4,47 +4,70 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Range;
+
+/**
+ * @author Sathya S
+ *
+ */
 @Entity
-@Table (name="olxResale")
+@Table(name = "user")
 public class User {
+
+	private int Id;
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z0-9]{3}@[a-zA-Z0-9]{3}.com",message="You have entered invalid Email Id")  
-	private String emailId;
+	@Pattern(regexp = "^[a-zA-Z0-9]{3}@[a-zA-Z0-9]{3}.com", message = "You have entered invalid Email Id")
+	private String email;
+	private String name;
+	@NotEmpty
+	@Pattern(regexp = "^[0-9]{10}", message = "you have entered invalid phone number")
+	private int mobileNumber;
+	private String address;
 	@NotEmpty
 	private String password;
-	private String Address;
-	//@NotEmpty
-	//@Pattern(regexp="^[0-9]{10}",message="you have entered invalid phone number")
-	private int phoneNumber;
+	private String confirmPassword;
+	@Range(min = 1)
 	private int roleId;
 
-	public User() {
-		super();
+	public int getId() {
+		return Id;
 	}
 
-	public User(String emailId, String password,String Address,int phoneNumber,  int roleId) {
-		super();
-		this.emailId=emailId;
-		this.password = password;
-		this.Address = Address;
-		this.phoneNumber=phoneNumber;
-		this.roleId = roleId;
+	public void setId(int id) {
+		Id = id;
 	}
 
-	public String getEmailId() {
-		return emailId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public int getPhoneNumber() {
-		return phoneNumber;
+	public String getName() {
+		return name;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(int mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getPassword() {
@@ -55,12 +78,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getAddress() {
-		return Address;
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
 
-	public void setAddress(String Address) {
-		this.Address = Address;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public int getRoleId() {
@@ -71,4 +94,20 @@ public class User {
 		this.roleId = roleId;
 	}
 
+	public User(int id, String email, String name, int mobileNumber, String address, String password,
+			String confirmPassword, int roleId) {
+		super();
+		Id = id;
+		this.email = email;
+		this.name = name;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.roleId = roleId;
+	}
+
+	public User() {
+		super();
+	}
 }
